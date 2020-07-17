@@ -15,7 +15,7 @@ trait UserField
 
     public function getMethod($method)
     {
-        return 'crm.' . $this->entity . 'userfield' . $method;
+        return 'crm.' . $this->entity . '.userfield.' . $method;
     }
 
     public function getList($order = [], $filter = [])
