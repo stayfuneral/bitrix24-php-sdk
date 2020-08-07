@@ -17,5 +17,4 @@ class UserField extends Bitrix24Entity
         $this->setEntity('company');
         parent::__construct($client);
     }
-
 }
