@@ -19,35 +19,102 @@ trait UserField
         $this->entity = $entity;
     }
 
+    /**
+     * Get method name
+     *
+     * @param $name
+     *
+     * @return string
+     */
     public function getMethod($name)
     {
         return 'crm.'. $this->entity . '.userfield.' . $name;
     }
 
+    /**
+     * Get list of user fields items.
+     *
+     * @param array $order - order of task items
+     * @param array $filter - filter array
+     *
+     * @return array
+     */
     public function getList($order = [], $filter = [])
     {
-        $fullResult = $this->client->call(
+        return $this->client->call(
             $this->getMethod('list'),
             [
                 'order' => $order,
                 'filter' => $filter
             ]
         );
-
-        return $fullResult;
     }
 
-    public function get($userfieldId)
+    /**
+     * Get item userfield
+     *
+     * @param integer $id entity userfield id
+     *
+     * @return array
+     */
+    public function get($id)
     {
-        $fullResult = $this->client->call(
+        return $this->client->call(
             $this->getMethod('get'),
             [
-                'id' => $userfieldId
+                'id' => $id
             ]
         );
-
-        return $fullResult;
     }
 
+    /**
+     * Delete userfield
+     *
+     * @param integer $id entity userfield id
+     *
+     * @return array
+     */
+    public function delete($id)
+    {
+        return $this->client->call(
+            $this->getMethod('delete'),
+            [
+                'id' => $id
+            ]
+        );
+    }
+
+    /**
+     * Add a new crm entity userfield
+     * @param array $fields array of fields
+     *
+     * @return array
+     */
+    public function add($fields)
+    {
+        return $this->client->call(
+            $this->getMethod('add'),
+            [
+                'fields' => $fields
+            ]
+        );
+    }
+
+    /**
+     * @param integer $id entity userfield id
+     * @param array $fields
+     *
+     * @return array
+     */
+    public function update($id, $fields = [])
+    {
+        return $this->client->call(
+            $this->getMethod('update'),
+            [
+                'id' => $id,
+                'fields' => $fields
+            ]
+        );
+    }
 
 }
