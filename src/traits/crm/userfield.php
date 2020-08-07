@@ -3,9 +3,11 @@
 
 namespace Bitrix24\Traits\CRM;
 
+use Bitrix24\Traits\Helpers\CrmTrait;
 
 trait UserField
 {
+    use CrmTrait;
     /**
      * @var string $entity
      */
@@ -18,4 +20,11 @@ trait UserField
     {
         $this->entity = $entity;
     }
+
+    public function getMethod($name)
+    {
+        return 'crm.'. $this->entity . '.userfield.' . $name;
+    }
+
+
 }
