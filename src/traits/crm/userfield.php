@@ -3,11 +3,9 @@
 
 namespace Bitrix24\Traits\CRM;
 
-use Bitrix24\Traits\Helpers\CrmTrait;
 
 trait UserField
 {
-    use CrmTrait;
     /**
      * @var string $entity
      */
@@ -24,6 +22,19 @@ trait UserField
     public function getMethod($name)
     {
         return 'crm.'. $this->entity . '.userfield.' . $name;
+    }
+
+    public function getList($order = [], $filter = [])
+    {
+        $fullResult = $this->client->call(
+            $this->getMethod('list'),
+            [
+                'order' => $order,
+                'filter' => $filter
+            ]
+        );
+
+        return $fullResult;
     }
 
 
