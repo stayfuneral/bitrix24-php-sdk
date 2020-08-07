@@ -37,5 +37,17 @@ trait UserField
         return $fullResult;
     }
 
+    public function get($userfieldId)
+    {
+        $fullResult = $this->client->call(
+            $this->getMethod('get'),
+            [
+                'id' => $userfieldId
+            ]
+        );
+
+        return $fullResult;
+    }
+
 
 }
